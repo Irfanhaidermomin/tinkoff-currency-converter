@@ -1,0 +1,41 @@
+<resources>
+
+    <style name="AppTheme" parent="Theme.AppCompat.NoActionBar">
+        <item name="android:windowBackground">@color/windowBackground</item>
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+    </style>
+
+    <style name="AppTheme.Transparent">
+        <item name="android:windowBackground">@color/colorPrimaryTransparent</item>
+        <item name="android:windowIsTranslucent">true</item>
+    </style>
+
+    <style name="TextAmount">
+        <item name="android:textSize">30sp</item>
+        <item name="android:padding">8dp</item>
+        <item name="android:gravity">center</item>
+    </style>
+
+    <style name="TextAmount.In">
+        <item name="android:background">?selectableItemBackground</item>
+        <item name="android:textColor">#fff</item>
+    </style>
+
+    <style name="TextAmount.Out">
+        <item name="android:background">@drawable/bg_selectable_dark</item>
+        <item name="android:textColor">@color/colorPrimary</item>
+    </style>
+
+    <style name="AlertDialogStyle" parent="Theme.AppCompat.Dialog">
+        <item name="android:background">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+        <item name="android:windowAnimationStyle">@style/AlertDialogAnim</item>
+    </style>
+
+    <style name="AlertDialogAnim">
+        <item name="android:windowEnterAnimation">@anim/slide_in_up</item>
+        <item name="android:windowExitAnimation">@anim/slide_out_down</item>
+    </style>
+</resources>

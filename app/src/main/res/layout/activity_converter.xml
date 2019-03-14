@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/viewRoot"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#888"
+    android:clipChildren="false"
+    tools:context=".feature.converter.ConverterActivity">
+
+    <androidx.viewpager.widget.ViewPager
+        android:id="@+id/pagerCurrencyIn"
+        android:layout_width="0dp"
+        android:layout_height="96dp"
+        android:overScrollMode="never"
+        app:layout_constraintBottom_toTopOf="@id/textAmountIn"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintWidth_percent=".5"
+        tools:background="#222"/>
+
+    <TextView
+        android:id="@+id/textAmountIn"
+        style="@style/TextAmount.In"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="8dp"
+        app:layout_constraintBottom_toTopOf="@id/buttonSwap"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        tools:text="400.00"/>
+
+    <ImageView
+        android:id="@+id/buttonSwap"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/bg_btn_swap"
+        android:padding="16dp"
+        android:src="@drawable/ic_swap_vert"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
+
+    <TextView
+        android:id="@+id/textAmountOut"
+        style="@style/TextAmount.Out"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="8dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/buttonSwap"
+        tools:text="400.00"/>
+
+    <androidx.viewpager.widget.ViewPager
+        android:id="@+id/pagerCurrencyOut"
+        android:layout_width="0dp"
+        android:layout_height="96dp"
+        android:overScrollMode="never"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/textAmountOut"
+        app:layout_constraintWidth_percent=".5"
+        tools:background="#222"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

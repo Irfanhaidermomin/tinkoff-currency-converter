@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">Конвертер Валют</string>
+    <string name="edit_amount_hint">Введите сумму</string>
+    <string name="error">Произошла ошибка</string>
+    <string name="retry">Повторить</string>
+    <string name="currency_list_title">Выберите валюту</string>
+    <string name="cancel">Отмена</string>
+</resources>
