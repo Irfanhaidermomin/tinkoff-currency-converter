@@ -2,8 +2,11 @@ package ru.tinkoff.converter.feature.converter
 
 import android.app.Application
 import androidx.room.Room
+import com.jakewharton.retrofit2.adapter.kotlin.coroutines.CoroutineCallAdapterFactory
+import retrofit2.Retrofit
+import retrofit2.converter.gson.GsonConverterFactory
+import ru.tinkoff.converter.BuildConfig
 import ru.tinkoff.converter.api.ConvertingService
-import ru.tinkoff.converter.api.StubConvertingService
 import ru.tinkoff.converter.orm.CurrencyDatabase
 
 class ConverterApp : Application() {
@@ -26,6 +29,11 @@ class ConverterApp : Application() {
     }
 
     private fun initApi() {
-        convertingService = StubConvertingService
+        val retrofit = Retrofit.Builder()
+            .baseUrl(BuildConfig.API_ENDPOINT)
+            .addCallAdapterFactory(CoroutineCallAdapterFactory())
+            .addConverterFactory(GsonConverterFactory.create())
+            .build()
+        convertingService = retrofit.create(ConvertingService::class.java)
     }
 }
