@@ -37,6 +37,8 @@ class ConverterActivity : MvpAndroidXAppCompatActivity(), ConverterView,
     @InjectPresenter
     lateinit var presenter: ConverterPresenter
 
+    private var ignoreUpdate = false
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_converter)
@@ -74,6 +76,7 @@ class ConverterActivity : MvpAndroidXAppCompatActivity(), ConverterView,
         pagerCurrencyIn.addOnPageChangeListener(FancyPageChangeListener(adapterCurrencyIn))
         pagerCurrencyIn.addOnPageChangeListener(object : ViewPager.SimpleOnPageChangeListener() {
             override fun onPageSelected(position: Int) {
+                if (ignoreUpdate) return
                 presenter.convert(
                     pagerCurrencyIn.currentItem,
                     pagerCurrencyOut.currentItem,
@@ -90,6 +93,7 @@ class ConverterActivity : MvpAndroidXAppCompatActivity(), ConverterView,
         pagerCurrencyOut.addOnPageChangeListener(FancyPageChangeListener(adapterCurrencyOut))
         pagerCurrencyOut.addOnPageChangeListener(object : ViewPager.SimpleOnPageChangeListener() {
             override fun onPageSelected(position: Int) {
+                if (ignoreUpdate) return
                 presenter.convertInverse(
                     pagerCurrencyOut.currentItem,
                     pagerCurrencyIn.currentItem,
@@ -140,7 +144,11 @@ class ConverterActivity : MvpAndroidXAppCompatActivity(), ConverterView,
     }
 
     private fun onButtonSwapClick() {
-        // TODO
+        val tmp = pagerCurrencyOut.currentItem
+        ignoreUpdate = true
+        pagerCurrencyOut.currentItem = pagerCurrencyIn.currentItem
+        ignoreUpdate = false
+        pagerCurrencyIn.currentItem = tmp
 
         val rotation = if (buttonSwap.rotation > 0) 0f else 180f
         buttonSwap.animate()
