@@ -10,7 +10,6 @@ import android.view.animation.DecelerateInterpolator
 import android.widget.TextView
 import androidx.viewpager.widget.ViewPager
 import com.arellomobile.mvp.presenter.InjectPresenter
-import com.arellomobile.mvp.presenter.ProvidePresenter
 import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.activity_converter.*
 import ru.tinkoff.converter.R
@@ -75,7 +74,11 @@ class ConverterActivity : MvpAndroidXAppCompatActivity(), ConverterView,
         pagerCurrencyIn.addOnPageChangeListener(FancyPageChangeListener(adapterCurrencyIn))
         pagerCurrencyIn.addOnPageChangeListener(object : ViewPager.SimpleOnPageChangeListener() {
             override fun onPageSelected(position: Int) {
-                // TODO
+                presenter.convert(
+                    pagerCurrencyIn.currentItem,
+                    pagerCurrencyOut.currentItem,
+                    textAmountIn.textAsBigDecimal()
+                )
             }
         })
 
@@ -87,7 +90,11 @@ class ConverterActivity : MvpAndroidXAppCompatActivity(), ConverterView,
         pagerCurrencyOut.addOnPageChangeListener(FancyPageChangeListener(adapterCurrencyOut))
         pagerCurrencyOut.addOnPageChangeListener(object : ViewPager.SimpleOnPageChangeListener() {
             override fun onPageSelected(position: Int) {
-                // TODO
+                presenter.convertInverse(
+                    pagerCurrencyOut.currentItem,
+                    pagerCurrencyIn.currentItem,
+                    textAmountOut.textAsBigDecimal()
+                )
             }
         })
 
